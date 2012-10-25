@@ -1,0 +1,1 @@
+("#role").html("<%= escape_javascript(render(:partial => 'role', :locals => {:cart => @cart})).html_safe %>");

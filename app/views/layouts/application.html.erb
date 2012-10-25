@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopping</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	
+<div id='user_nav'>
+	<% if current_user%>
+		Logged in as <%= current_user.role_id%>(<%= current_user.role.role_name %>)
+		<%=link_to  "Log out", log_out_path %>
+	<% else%>
+		<%= link_to "Sign Up", sign_up_path %>
+		<%= link_to "Log in", log_in_path %>
+		
+	<% end%>
+	
+</div>
+<div id='user_nav'>
+	<% unless current_user.nil? %>
+		<% if current_user.role_id == 1%>
+			<%= link_to "Add Product", add_products_path%>
+		<% end %>
+	<% end %>
+</div>
+
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>
+<%= yield %>
+
+</body>
+</html>
